@@ -33,8 +33,10 @@ write_in_worksheet(ws1, 'L1', 'Lecture')
 #Values to excel
 #http://xlsxwriter.readthedocs.io/tutorial03.html
 
+#skapa en tom matris ma
 ma=[]
 
+#läs in till ma matrisen
 with open('statLIvet.csv', 'rU') as csvfile:
     spamreader = csv.reader(csvfile, delimiter=';')
     for row in spamreader:
@@ -44,10 +46,13 @@ with open('statLIvet.csv', 'rU') as csvfile:
 #date_time = datetime.datetime.strptime('2013-01-23', '%Y-%m-%d')
 #worksheet.write_datetime(0, 0, datetime, date_format)
 #ws1.write(row, col + 1,kol2)  #text
+
+#Kolumnbredd=20 för A-kolumn
 ws1.set_column('A:A',20)
 date_format = workbook.add_format({'num_format': 'yyyy-mm-dd'})
 row = 1
 col = 0
+#read in rad for rad begin row ond row down
 for kol1,kol2,kol3,kol4,kol5,kol6,kol7,kol8,kol9,kol10,kol11,kol12 in (ma):
     ws1.write_datetime(row, col,datetime.datetime.strptime(kol1, '%Y-%m-%d'),date_format)
     ws1.write(row, col + 1,float(kol2) )
@@ -62,9 +67,5 @@ for kol1,kol2,kol3,kol4,kol5,kol6,kol7,kol8,kol9,kol10,kol11,kol12 in (ma):
     ws1.write(row, col + 10,float(kol11))
     ws1.write(row, col + 11,float(kol12))
     row=row+1
-
-workbook.close()
-
-
 
 workbook.close()
