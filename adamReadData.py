@@ -5,7 +5,7 @@ import csv
 columns = []
 
 #Values
-
+print "Ange day like 2017-10-15"
 print 'Which day is it? '
 columns.append(raw_input().lower())
 
